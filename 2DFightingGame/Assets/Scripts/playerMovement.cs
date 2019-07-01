@@ -1,8 +1,7 @@
 ﻿/*
-Date of creation: June 6, 2019
-Date of modification: June 6, 2019
+Date of creation: June 28, 2019
+Date of modification: June 28, 2019
 Author: Max Wong
-Following Brackeys tutorial
 Purpose: To get player inputs in order to perform movements through the "CharacterController2D".
 */
 

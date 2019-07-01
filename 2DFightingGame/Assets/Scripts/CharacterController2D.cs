@@ -1,6 +1,6 @@
 ﻿/*
-Date of creation: June 6, 2019
-Date of modification: June 6, 2019
+Date of creation: June 28, 2019
+Date of modification: June 28, 2019
 Author: ATBrackeys
 Purpose: To establish the base for the movement script.
 */
