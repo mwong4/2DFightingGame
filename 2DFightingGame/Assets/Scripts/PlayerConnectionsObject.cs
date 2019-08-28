@@ -39,6 +39,11 @@ public class PlayerConnectionsObject : NetworkBehaviour
 
     public GameObject PlayerUnitPrefab;
 
+    //SyncVar are ariales where if their values changes on the SERVER, then all clients
+    // are automatically informed of the new values
+    [SyncVar (hook="OnPlayerNameChanged")]
+    public string PlayerName = "Anonymous";
+
     // Update is called once per frame
     void Update()
     {
@@ -55,6 +60,14 @@ public class PlayerConnectionsObject : NetworkBehaviour
             CmdSpawnMyUnit();
         }
 
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+           string n = "Quil" + Random.Range(1, 100); 
+           Debug.Log("Sending the server a request to change our name to:  " + n );
+           CmdChangePlayerName(n);
+
+        }
+
         /*
         if(Input.GetButtonDown("Jump"))
         {
@@ -62,6 +75,17 @@ public class PlayerConnectionsObject : NetworkBehaviour
         }
         */
         
+    }
+
+    void OnPlayerNameChanged(string newName)
+    {
+        Debug.Log("OnPlayerNameChanged: OldName: " + PlayerName + " NewName: " + newName);
+
+         //wARNING: If you ise a hook on a SyncVar, the our local value does NOT get automatically
+         //updated.
+        PlayerName = newName;
+
+        gameObject.name = "PlayerConectionObject [" + newName + "]";
     }
 
     ///////////////////////// Commands
@@ -80,4 +104,31 @@ public class PlayerConnectionsObject : NetworkBehaviour
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
 
     }
+
+    [Command]
+    void CmdChangePlayerName(string n)
+    {
+        PlayerName = n;
+        //Debug.Log("New name: " + PlayerName );
+
+        //Check for bad/error names?
+
+
+        //RpcChangePlayerName(PlayerName);
+    }
+
+
+
+        ///////////////////////// RPC
+        //RPCs are special functions that ONLY get executed on the clients.
+
+        /*
+        [ClientRpc]
+        void RpcChangePlayerName(string n)
+        {
+            PlayerName = n;
+        }
+        */
+
+    
 }
