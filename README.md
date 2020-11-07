@@ -1,5 +1,7 @@
 # 2DFightingGame
-A 2D Fighting game that features a pixelated Japanese style
+Botanical Rumble is a 2D pixel art style fighting game. Pick your favorite plant character and fight your friends across the internet. The choice is yours, with 3 different 
+and beautiful maps themed around modern day Japan. This project's main goal was to take our current design skills to the maximum along with 
+learning a very difficult concept - Networking. 
 
 Coding guidline:
 
